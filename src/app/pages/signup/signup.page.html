@@ -1,0 +1,53 @@
+<ion-content [fullscreen]="true" class="auth-content">
+  <main class="auth-shell">
+    <a class="back-link" routerLink="/login">‹ Back to sign in</a>
+    <p class="eyebrow">iRescue</p>
+    <h1>Sign Up</h1>
+    <p class="intro">Your report can help responders reach the right place faster.</p>
+
+    <form class="form-stack" (ngSubmit)="createAccount()">
+      <div class="two-column">
+        <ion-item lines="none" class="field-item">
+          <ion-label position="stacked">First name</ion-label>
+          <ion-input name="firstName" placeholder="Juan" [(ngModel)]="firstName" (ngModelChange)="touchForm()" required></ion-input>
+        </ion-item>
+        <ion-item lines="none" class="field-item">
+          <ion-label position="stacked">Last name</ion-label>
+          <ion-input name="lastName" placeholder="Dela Cruz" [(ngModel)]="lastName" (ngModelChange)="touchForm()" required></ion-input>
+        </ion-item>
+      </div>
+      <ion-item lines="none" class="field-item">
+        <ion-label position="stacked">Email address</ion-label>
+        <ion-input type="email" name="email" placeholder="you@example.com" [(ngModel)]="email" (ngModelChange)="touchForm()" required></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="field-item">
+        <ion-label position="stacked">Phone number</ion-label>
+        <ion-input appDigitsOnly type="tel" name="phone" inputmode="numeric" maxlength="11" placeholder="0917 555 0123" [(ngModel)]="phone" (ngModelChange)="touchForm()" required></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="field-item">
+        <ion-label position="stacked">Role / position</ion-label>
+        <ion-select name="role" interface="action-sheet" [(ngModel)]="role" (ngModelChange)="touchForm()">
+          @for (option of roles; track option) {
+            <ion-select-option [value]="option">{{ option }}</ion-select-option>
+          }
+        </ion-select>
+      </ion-item>
+      <ion-item lines="none" class="field-item">
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" name="password" placeholder="At least 6 characters" [(ngModel)]="password" (ngModelChange)="touchForm()" required></ion-input>
+      </ion-item>
+      <ion-item lines="none" class="field-item">
+        <ion-label position="stacked">Confirm password</ion-label>
+        <ion-input type="password" name="confirmPassword" placeholder="Repeat your password" [(ngModel)]="confirmPassword" (ngModelChange)="touchForm()" required></ion-input>
+      </ion-item>
+      @if (submitted() && !passwordMatches()) {
+        <ion-text color="danger"><small>Passwords must match and be at least 6 characters.</small></ion-text>
+      }
+      <ion-checkbox name="acceptedTerms" [(ngModel)]="acceptedTerms" (ngModelChange)="touchForm()">I agree to the Terms & Conditions</ion-checkbox>
+      @if (submitted() && !acceptedTerms) {
+        <ion-text color="danger"><small>Please accept the Terms & Conditions to continue.</small></ion-text>
+      }
+      <ion-button type="submit" expand="block" color="primary" [disabled]="submitted() && !formReady()">Create account</ion-button>
+    </form>
+  </main>
+</ion-content>

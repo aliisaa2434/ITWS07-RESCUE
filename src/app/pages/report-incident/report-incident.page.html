@@ -1,0 +1,97 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Report an incident</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="report-content">
+  <main class="report-shell">
+    @if (currentStep() < 3) {
+      <div class="stepper" aria-label="Report progress">
+        <span class="step" [class.active]="currentStep() === 1">1</span>
+        <span class="step-line" [class.active]="currentStep() === 2"></span>
+        <span class="step" [class.active]="currentStep() === 2">2</span>
+      </div>
+      <p class="step-label">Step {{ currentStep() }} of 2</p>
+    }
+
+    @if (currentStep() === 1) {
+      <section class="step-section">
+        <p class="eyebrow">FIRST, HELP US FIND YOU</p>
+        <h1>Set location & photo</h1>
+        <p class="intro">A precise location and a photo help responders understand the situation quickly.</p>
+
+        <button class="capture-card" type="button" (click)="captureLocation()">
+          <span class="capture-icon"><ion-icon name="location-outline"></ion-icon></span>
+          <span class="capture-copy">
+            <strong>{{ locationCaptured() ? 'Location captured' : 'Use current location' }}</strong>
+            <small>{{ locationCaptured() ? location : 'Tap to mock your incident location' }}</small>
+          </span>
+          <span class="capture-arrow">›</span>
+        </button>
+
+        <button class="photo-card" type="button" (click)="addPhoto()">
+          <span class="capture-icon photo"><ion-icon name="camera-outline"></ion-icon></span>
+          <span class="capture-copy">
+            <strong>{{ photoAdded() ? 'Photo attached' : 'Add a photo' }}</strong>
+            <small>{{ photoAdded() ? photoName : 'Optional, but recommended' }}</small>
+          </span>
+          <span class="capture-arrow">›</span>
+        </button>
+
+        <ion-button expand="block" color="primary" [disabled]="!locationCaptured()" (click)="continueToDetails()">Continue</ion-button>
+        <ion-button expand="block" fill="clear" routerLink="/dashboard">Cancel report</ion-button>
+      </section>
+    } @else if (currentStep() === 2) {
+      <section class="step-section">
+        <p class="eyebrow">TELL US WHAT HAPPENED</p>
+        <h1>Incident details</h1>
+        <p class="intro">Share the essentials. A responder may contact you for more information.</p>
+
+        <form class="form-stack" (ngSubmit)="submitReport()">
+          <ion-item lines="none" class="field-item">
+            <ion-label position="stacked">Incident type</ion-label>
+            <ion-select name="incidentType" interface="action-sheet" placeholder="Select incident type" [(ngModel)]="incidentType" (ngModelChange)="touchForm()" required>
+              @for (type of incidentTypes; track type) {
+                <ion-select-option [value]="type">{{ type }}</ion-select-option>
+              }
+            </ion-select>
+          </ion-item>
+          <ion-item lines="none" class="field-item">
+            <ion-label position="stacked">Description</ion-label>
+            <ion-textarea name="description" rows="5" autoGrow="true" placeholder="What happened?" [(ngModel)]="description" (ngModelChange)="touchForm()" required></ion-textarea>
+          </ion-item>
+          <ion-item lines="none" class="field-item">
+            <ion-label position="stacked">Your name</ion-label>
+            <ion-input name="contactName" placeholder="Contact name" [(ngModel)]="contactName" (ngModelChange)="touchForm()" required></ion-input>
+          </ion-item>
+          <ion-item lines="none" class="field-item">
+            <ion-label position="stacked">Contact number</ion-label>
+            <ion-input appDigitsOnly type="tel" name="contactNumber" inputmode="numeric" maxlength="11" placeholder="0917 555 0123" [(ngModel)]="contactNumber" (ngModelChange)="touchForm()" required></ion-input>
+          </ion-item>
+          @if (submitted() && !detailsReady()) {
+            <p class="error-message">Complete each field. Description must be at least 10 characters.</p>
+          }
+          <ion-button type="submit" expand="block" color="danger">Submit report</ion-button>
+        </form>
+        <ion-button expand="block" fill="clear" (click)="currentStep.set(1)">Back</ion-button>
+      </section>
+    } @else {
+      <section class="confirmation-section">
+        <div class="success-icon"><ion-icon name="checkmark-circle"></ion-icon></div>
+        <p class="eyebrow">REPORT RECEIVED</p>
+        <h1>Thank you for speaking up.</h1>
+        <p class="intro">Your report is now with the response team. Keep this reference number for updates.</p>
+        <div class="reference-card">
+          <span>Incident reference</span>
+          <strong>{{ createdReport()?.id }}</strong>
+          <small>Status: Pending review</small>
+        </div>
+        <ion-button expand="block" color="primary" routerLink="/dashboard">Back to dashboard</ion-button>
+      </section>
+    }
+  </main>
+</ion-content>

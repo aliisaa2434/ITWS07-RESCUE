@@ -1,0 +1,123 @@
+.auth-content {
+  --background: linear-gradient(155deg, #f4f8ff 0%, #ffffff 52%, #eef8f5 100%);
+}
+
+.auth-shell {
+  width: min(100%, 520px);
+  margin: 0 auto;
+  padding: 28px 24px 40px;
+}
+
+.back-link {
+  color: var(--ion-color-primary);
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.eyebrow {
+  margin: 30px 0 8px;
+  color: var(--ion-color-primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+h1 {
+  margin: 0;
+  color: #17233b;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.intro {
+  margin: 10px 0 24px;
+  color: #637087;
+  line-height: 1.55;
+}
+
+.form-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.two-column {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.field-item {
+  --background: rgba(255, 255, 255, 0.86);
+  --border-color: #dce5f0;
+  --border-radius: 14px;
+  --inner-padding-end: 16px;
+  --padding-start: 16px;
+  min-height: 66px;
+  border: 1px solid #dce5f0;
+  border-radius: 14px;
+}
+
+ion-input,
+ion-select {
+  --background: #ffffff;
+  --color: #000000;
+  --placeholder-color: #5f6b7a;
+  --placeholder-opacity: 1;
+  --highlight-color-focused: var(--ion-color-primary);
+}
+
+ion-input::part(native) {
+  color: #000000;
+  caret-color: var(--ion-color-primary);
+}
+
+ion-input::part(native)::placeholder {
+  color: #5f6b7a;
+  opacity: 1;
+}
+
+ion-select::part(container) {
+  background: #ffffff;
+  color: #000000;
+}
+
+ion-select::part(text) {
+  color: #000000;
+  opacity: 1;
+}
+
+ion-select::part(placeholder) {
+  color: #5f6b7a;
+  opacity: 1;
+}
+
+ion-select::part(icon) {
+  color: #000000;
+  opacity: 1;
+}
+
+ion-label {
+  color: #53617a !important;
+  font-size: 0.76rem !important;
+  font-weight: 700;
+}
+
+ion-checkbox {
+  margin: 6px 0;
+  color: #53617a;
+  font-size: 0.82rem;
+}
+
+ion-button {
+  height: 52px;
+  margin-top: 6px;
+  --border-radius: 14px;
+  font-weight: 700;
+}
+
+@media (max-width: 380px) {
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,30 @@
+<ion-card class="incident-card" [class.is-expanded]="expanded()">
+  <ion-card-header>
+    <div class="card-heading">
+      <div>
+        <ion-card-subtitle>{{ report().id }} · {{ report().submittedAt }}</ion-card-subtitle>
+        <ion-card-title>{{ report().type }}</ion-card-title>
+      </div>
+      <ion-badge [color]="report().status === 'Resolved' ? 'success' : report().status === 'In Review' ? 'warning' : 'primary'">
+        {{ report().status }}
+      </ion-badge>
+    </div>
+  </ion-card-header>
+  <ion-card-content>
+    <div class="location-row">
+      <ion-icon aria-hidden="true" name="location-outline"></ion-icon>
+      <span>{{ report().location }}</span>
+    </div>
+    @if (expanded()) {
+      <p class="description">{{ report().description }}</p>
+    }
+    <div class="card-actions">
+      <ion-button fill="clear" size="small" (click)="toggleExpanded()">
+        {{ expanded() ? 'Hide details' : 'View details' }}
+      </ion-button>
+      <ion-button fill="clear" size="small" aria-label="Open incident" (click)="requestView()">
+        <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-card-content>
+</ion-card>

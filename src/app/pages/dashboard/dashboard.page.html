@@ -1,0 +1,66 @@
+<ion-header class="dashboard-header" [translucent]="true">
+  <ion-toolbar>
+    <div class="toolbar-content">
+      <div class="brand-lockup">
+        <div class="mini-mark">iR</div>
+        <span>iRescue</span>
+      </div>
+      <div class="toolbar-actions">
+        <ion-button fill="clear" aria-label="Notifications">
+          <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" aria-label="Log out" (click)="logout()">
+          <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="dashboard-content">
+  <main class="dashboard-shell">
+    <section class="welcome-block">
+      <p class="eyebrow">CIVILIAN DASHBOARD</p>
+      <h1>{{ greeting() }}</h1>
+      <p>Stay alert. Stay connected. We are here to help.</p>
+    </section>
+
+    <ion-button class="report-button" routerLink="/report-incident" expand="block" color="danger">
+      <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+      Report an incident
+    </ion-button>
+
+    <section class="quick-section">
+      <div class="section-heading">
+        <h2>Quick actions</h2>
+        <span>Need help?</span>
+      </div>
+      <div class="quick-grid">
+        <a class="quick-action" routerLink="/report-incident">
+          <span class="quick-icon primary"><ion-icon name="add-circle-outline"></ion-icon></span>
+          <strong>New report</strong>
+          <small>Tell us what happened</small>
+        </a>
+      </div>
+    </section>
+
+    <section class="reports-section">
+      <div class="section-heading">
+        <h2>Recent reports</h2>
+        <ion-badge color="light">{{ reports().length }} total</ion-badge>
+      </div>
+      @if (reports().length > 0) {
+        <div class="report-list">
+          @for (report of reports(); track report.id) {
+            <app-incident-card [report]="report" (viewRequested)="onReportSelected($event)"></app-incident-card>
+          }
+        </div>
+      } @else {
+        <div class="empty-state">
+          <p>No reports yet.</p>
+          <span>Your submitted incidents will appear here.</span>
+        </div>
+      }
+    </section>
+  </main>
+</ion-content>

@@ -35,3 +35,77 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Keep Ionic controls and their document-level select overlays readable. */
+ion-select-popover,
+ion-select-modal,
+ion-action-sheet,
+ion-alert,
+ion-popover {
+	--background: #ffffff;
+	--color: #000000;
+	--button-color: #000000;
+	--button-background: #ffffff;
+	--button-background-selected: #e7f0ff;
+	--button-background-activated: #e7f0ff;
+	--button-background-focused: #e7f0ff;
+	--button-background-hover: #f1f6ff;
+	--button-color-activated: #000000;
+	--button-color-selected: #000000;
+	--button-color-focused: #000000;
+	--button-color-hover: #000000;
+	--button-color-disabled: #667085;
+	color: #000000;
+}
+
+.action-sheet-container,
+.action-sheet-group,
+.select-interface-option,
+.alert-wrapper,
+.popover-content {
+	background: #ffffff;
+}
+
+.action-sheet-button,
+.action-sheet-button-inner,
+.select-interface-option,
+.select-interface-option .alert-radio-label,
+.alert-radio-label,
+.alert-button,
+.alert-button-inner {
+	color: #000000 !important;
+	font-size: 1rem;
+}
+
+.action-sheet-button {
+	background: #ffffff !important;
+	color: #000000 !important;
+}
+
+.action-sheet-button-inner {
+	white-space: normal;
+}
+
+.action-sheet-button.ion-activated,
+.action-sheet-button.action-sheet-selected,
+.action-sheet-button.ion-focused,
+.action-sheet-button:hover,
+.select-interface-option.ion-focused,
+.select-interface-option[aria-selected="true"],
+.alert-radio-button[aria-checked="true"],
+.alert-button.ion-activated {
+	background: #e7f0ff;
+	color: #000000 !important;
+}
+
+.action-sheet-button.action-sheet-cancel,
+.alert-button-role-cancel {
+	color: var(--ion-color-primary) !important;
+}
+
+.action-sheet-button[disabled],
+.alert-button[disabled],
+.alert-radio-button[aria-disabled="true"] {
+	color: #667085 !important;
+	opacity: 1;
+}

@@ -1,0 +1,125 @@
+.auth-content {
+  --background: linear-gradient(155deg, #f4f8ff 0%, #ffffff 52%, #eef8f5 100%);
+}
+
+.auth-shell {
+  width: min(100%, 480px);
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 48px 24px 30px;
+}
+
+.brand-mark {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border-radius: 18px;
+  background: var(--ion-color-primary);
+  color: white;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.eyebrow {
+  margin: 22px 0 8px;
+  color: var(--ion-color-primary);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+h1 {
+  margin: 0;
+  color: #17233b;
+  font-size: 2.15rem;
+  font-weight: 800;
+}
+
+.intro {
+  max-width: 340px;
+  margin: 10px 0 30px;
+  color: #637087;
+  line-height: 1.55;
+}
+
+.form-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.field-item {
+  --background: rgba(255, 255, 255, 0.86);
+  --border-color: #dce5f0;
+  --border-radius: 14px;
+  --inner-padding-end: 16px;
+  --padding-start: 16px;
+  border: 1px solid #dce5f0;
+  border-radius: 14px;
+}
+
+ion-input {
+  --color: #000000;
+  --placeholder-color: #5f6b7a;
+  --placeholder-opacity: 1;
+  --highlight-color-focused: var(--ion-color-primary);
+}
+
+ion-input::part(native) {
+  color: #000000;
+  caret-color: var(--ion-color-primary);
+}
+
+ion-input::part(native)::placeholder {
+  color: #5f6b7a;
+  opacity: 1;
+}
+
+ion-label {
+  color: #53617a !important;
+  font-size: 0.78rem !important;
+  font-weight: 700;
+}
+
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 2px 0 8px;
+  color: #637087;
+  font-size: 0.82rem;
+}
+
+.form-options a,
+.switch-copy a {
+  color: var(--ion-color-primary);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+ion-button {
+  height: 52px;
+  margin-top: 4px;
+  --border-radius: 14px;
+  font-weight: 700;
+}
+
+.switch-copy {
+  margin: 28px 0 0;
+  color: #637087;
+  text-align: center;
+  font-size: 0.88rem;
+}
+
+.auth-footer ion-toolbar {
+  --background: transparent;
+  --border-width: 0;
+  text-align: center;
+}
+
+.auth-footer p {
+  margin: 8px 0;
+  color: #8190a5;
+  font-size: 0.72rem;
+}
